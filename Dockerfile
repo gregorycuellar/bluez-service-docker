@@ -4,6 +4,7 @@ RUN apt-get update -q -y \
  && apt-get install -y --no-install-recommends \
     bluez \
     dbus \
+    sudo \
  && \
     apt-get clean \
  && rm -rf /var/lib/apt/lists/*
@@ -11,7 +12,8 @@ RUN apt-get update -q -y \
 COPY ./bluezuser.conf /etc/dbus-1/system.d/
 
 RUN addgroup --system --gid 1888 bluezuser \
- && adduser --system --uid 1888 --no-create-home --home /var/empty --shell /sbin/nologin --ingroup bluezuser bluezuser
+ && adduser --system --uid 1888 --no-create-home --home /var/empty --shell /sbin/nologin --ingroup bluezuser bluezuser \
+ && adduser bluezuser sudo
 
 USER bluezuser
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 # start services
-service dbus start
-service bluetooth start
+sudo service dbus start
+sudo service bluetooth start
 
 # wait for startup of services
 msg="Waiting for services to start..."
@@ -14,7 +14,7 @@ while [[ "$(pidof start-stop-daemon)" != "" ]]; do
 done
 echo -e "\r$msg done! (in $time s)"
 
-hciconfig hci0 down
-hciconfig hci0 up
+sudo hciconfig hci0 down
+sudo hciconfig hci0 up
 
 sleep infinity
